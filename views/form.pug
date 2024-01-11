@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 New Message
+  form(method='POST' action="/new") 
+    input(
+      type='text'
+      name='author'
+      placeholder='Rebecca'
+    )
+    input(
+      type='text'
+      name='message'
+      placeholder='Write something!'
+    )
+    button(
+      type='submit'
+    ) Submit
