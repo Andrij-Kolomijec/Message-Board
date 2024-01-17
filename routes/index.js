@@ -1,16 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const { DateTime } = require("luxon");
 
 const messages = [
   {
-    text: "Hi there!",
-    user: "Amando",
-    added: new Date(),
+    text: "Hello there.",
+    user: "Obi-Wan Kenobi",
+    added: DateTime.now().toLocaleString(DateTime.DATETIME_MED),
   },
   {
-    text: "Hello World!",
-    user: "Charles",
-    added: new Date(),
+    text: "General Kenobi!",
+    user: "Grievous",
+    added: DateTime.now().toLocaleString(DateTime.DATETIME_MED),
   },
 ];
 
@@ -26,10 +27,10 @@ router.post("/new", function (req, res, next) {
   messages.push({
     text: req.body.message,
     user: req.body.author,
-    added: new Date(),
+    added: DateTime.now().toLocaleString(DateTime.DATETIME_MED),
   });
   console.log(req.body.message);
-  res.redirect("/", { title: "Mini Message Board", messages });
+  res.redirect("/");
 });
 
 module.exports = router;
