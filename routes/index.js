@@ -1,35 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const { DateTime } = require("luxon");
+const Message = require("../models/message");
+const message_controller = require("../controllers/messageController");
 
-const messages = [
-  {
-    text: "Hello there.",
-    user: "Obi-Wan Kenobi",
-    added: DateTime.now().toLocaleString(DateTime.DATETIME_MED),
-  },
-  {
-    text: "General Kenobi!",
-    user: "Grievous",
-    added: DateTime.now().toLocaleString(DateTime.DATETIME_MED),
-  },
-];
-
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Mini Message Board", messages });
-});
+router.get("/", message_controller.messages);
 
 router.get("/new", function (req, res, next) {
-  res.render("form", { title: "Add a message" });
+  res.render("form");
 });
 
-router.post("/new", function (req, res, next) {
-  messages.push({
+router.post("/new", async (req, res, next) => {
+  const newMessage = new Message({
     text: req.body.message,
     user: req.body.author,
-    added: DateTime.now().toLocaleString(DateTime.DATETIME_MED),
+    added: new Date(),
   });
-  console.log(req.body.message);
+  await newMessage.save();
   res.redirect("/");
 });
 

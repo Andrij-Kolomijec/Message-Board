@@ -4,4 +4,4 @@
 
 [:arrow_forward: visit here](https://message-board-9r63.onrender.com/)
 
-topics: Node.js, Express, Pug
+topics: Node.js, Express, Pug, Mongoose, dotenv

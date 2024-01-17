@@ -6,7 +6,7 @@ block content
   if messages && messages.length
     each message in messages
       div.message(style='border: 1px solid')
-        h4= message.added
+        h4= message.added_formatted
         h3= message.user
         p= message.text
   else
